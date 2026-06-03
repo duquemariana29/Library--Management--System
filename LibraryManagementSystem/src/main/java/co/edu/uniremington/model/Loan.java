@@ -12,7 +12,7 @@ public class Loan {
         this.id = id;
         this.book = book;
         this.borrowerName = borrowerName;
-        this.loanDate = loanDate.now();
+        this.loanDate = LocalDate.now();
         this.dueDate = dueDate.plusDays(14);
         this.returned = false;
     }
@@ -45,6 +45,17 @@ public class Loan {
     }
     public boolean isOverdue(){
         return LocalDate.now().isAfter(dueDate) && !returned;
+    }
+
+    public String toString() {
+        return "ID" + id +
+                " | Book: " + book.getTitle() +
+                " | BorrowerName: " + borrowerName +
+                " | Loan Date: " + loanDate +
+                " | Due Date: " + dueDate +
+                " | Returned: " + returned;
+
+
     }
 }
 
