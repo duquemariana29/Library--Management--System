@@ -64,7 +64,14 @@ public class Library {
         if (book == null || !book.isAvailable()) {
             return null;
         }
-        String id = "POO" + (loans.size() + 1);
+
+        for (Loan loan : loans) {
+            if (loan.getBook().getIsbn().equals(isbn) && !loan.isReturned()) {
+                return null;
+            }
+        }
+
+        String id = "P00" + (loans.size() + 1);
         book.changeState(StateBook.Borrowed);
         Loan loan = new Loan(id, book, borrowerName);
         loans.add(loan);
@@ -74,7 +81,7 @@ public class Library {
     public boolean returnBook(String loanId) {
         for (Loan loan : loans) {
             if (loan.getId().equals(loanId) && !loan.isReturned()) {
-                loan.regisiterReturn();
+                loan.registerReturn();
                 loan.getBook().changeState(StateBook.Available);
                 return true;
             }

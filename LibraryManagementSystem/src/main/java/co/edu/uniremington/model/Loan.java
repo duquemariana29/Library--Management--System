@@ -13,7 +13,7 @@ public class Loan {
         this.book = book;
         this.borrowerName = borrowerName;
         this.loanDate = LocalDate.now();
-        this.dueDate = dueDate.plusDays(14);
+        this.dueDate = loanDate.plusDays(14);
         this.returned = false;
     }
 
@@ -40,7 +40,7 @@ public class Loan {
     public boolean isReturned(){
         return returned;
     }
-    public void regisiterReturn(){
+    public void registerReturn(){
         returned = true;
     }
     public boolean isOverdue(){
