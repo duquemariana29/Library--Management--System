@@ -5,10 +5,10 @@ public class Loan {
     private final Book book;
     private final String borrowerName;
     private final LocalDate loanDate;
-    private final LocalDate dueDate;
+    private LocalDate dueDate = null;
     private boolean returned;
 
-    public Loan(String id, Book book, String borrowerName, LocalDate loanDate, LocalDate dueDate) {
+    public Loan(String id, Book book, String borrowerName) {
         this.id = id;
         this.book = book;
         this.borrowerName = borrowerName;
