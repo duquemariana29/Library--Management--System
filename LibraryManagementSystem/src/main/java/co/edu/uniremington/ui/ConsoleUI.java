@@ -147,4 +147,99 @@ public class ConsoleUI {
         }
     }
 
+    private void loansMenu() {
 
+        int option = 0;
+
+        while (option != 5) {
+
+            System.out.println("\n--- LOANS ---");
+            System.out.println("1. Register loan");
+            System.out.println("2. Register return");
+            System.out.println("3. View active loans");
+            System.out.println("4. View all loans");
+            System.out.println("5. Back");
+            System.out.print("Choose an option: ");
+
+            option = Integer.parseInt(scanner.nextLine());
+
+            switch (option) {
+                case 1 -> registerLoan();
+                case 2 -> registerReturn();
+                case 3 -> viewActiveLoans();
+                case 4 -> viewAllLoans();
+                case 5 -> System.out.println("Returning...");
+                default -> System.out.println("Invalid option.");
+            }
+        }
+    }
+
+    private void registerLoan() {
+
+        System.out.print("Enter ISBN: ");
+        String isbn = scanner.nextLine();
+
+        System.out.print("Borrower name: ");
+        String borrower = scanner.nextLine();
+
+        Loan loan = library.loanBooks(isbn, borrower);
+
+        if (loan != null) {
+            System.out.println("Loan registered successfully.");
+            System.out.println(loan);
+        } else {
+            System.out.println("Book not found or unavailable.");
+        }
+    }
+
+    private void registerReturn() {
+
+        System.out.print("Enter loan ID: ");
+        String id = scanner.nextLine();
+
+        boolean returned = library.returnBook(id);
+
+        if (returned) {
+            System.out.println("Book returned successfully.");
+        } else {
+            System.out.println("Loan not found or already returned.");
+        }
+    }
+
+    private void viewActiveLoans() {
+
+        ArrayList<Loan> loans = library.getActiveLoans();
+
+        if (loans.isEmpty()) {
+            System.out.println("No active loans.");
+        } else {
+            for (Loan loan : loans) {
+                System.out.println(loan);
+            }
+        }
+    }
+
+    private void viewAllLoans() {
+
+        ArrayList<Loan> loans = library.getAllLoans();
+
+        if (loans.isEmpty()) {
+            System.out.println("No loans registered.");
+        } else {
+            for (Loan loan : loans) {
+                System.out.println(loan);
+            }
+        }
+    }
+
+    private void showSummary() {
+
+        System.out.println("\n===== SUMMARY =====");
+        System.out.println("Total books: " + library.getCatalog().size());
+        System.out.println("Available books: " + library.getAvailableBooks().size());
+        System.out.println("Active loans: " + library.getActiveLoans().size());
+        System.out.println("Total loans: " + library.getAllLoans().size());
+    }
+
+
+}
