@@ -1,16 +1,16 @@
 package co.edu.uniremington.service;
 
-
 import co.edu.uniremington.model.Book;
 import co.edu.uniremington.model.Loan;
 import co.edu.uniremington.model.StateBook;
-
 import java.util.ArrayList;
 
+//Aquí se realiza encapsulamiento ya que impide que otras clases accedan directamente a ellos.
 public class Library {
     private final ArrayList<Book> catalog;
     private final ArrayList<Loan> loans;
 
+    //Constructor
     public Library() {
         this.catalog = new ArrayList<>();
         this.loans = new ArrayList<>();

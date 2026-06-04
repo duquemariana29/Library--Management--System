@@ -1,5 +1,7 @@
 package co.edu.uniremington.model;
  import java.time.LocalDate;
+
+//Aquí se realiza encapsulamiento ya que impide que otras clases accedan directamente a ellos.
 public class Loan {
     private final String id;
     private final Book book;
@@ -8,6 +10,7 @@ public class Loan {
     private LocalDate dueDate = null;
     private boolean returned;
 
+    //Constructor
     public Loan(String id, Book book, String borrowerName) {
         this.id = id;
         this.book = book;

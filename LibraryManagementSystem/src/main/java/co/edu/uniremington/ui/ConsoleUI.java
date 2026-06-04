@@ -3,18 +3,25 @@ package co.edu.uniremington.ui;
 import co.edu.uniremington.model.Book;
 import co.edu.uniremington.model.Loan;
 import co.edu.uniremington.service.Library;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//Aquí se realiza encapsulamiento ya que impide que otras clases accedan directamente a ellos.
 public class ConsoleUI {
     private final Library library;
     private final Scanner scanner;
 
+    //Constructor
     public ConsoleUI(Library library) {
         this.library = library;
         this.scanner = new Scanner(System.in);
     }
+
+    /** Open/close
+     *Es posible agregar nuevas opciones al menú
+     *pero habría que modificar los métodos switch, por lo que no está completamente cerrada a modificaciones.
+     */
+
     public void start() {
 
         int option = 0;

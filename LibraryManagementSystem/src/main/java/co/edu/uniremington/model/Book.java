@@ -1,5 +1,6 @@
 package co.edu.uniremington.model;
 
+//Aquí se realiza encapsulamiento ya que impide que otras clases accedan directamente a ellos.
 public class Book {
     private final String isbn;
     private final String title;
@@ -7,6 +8,7 @@ public class Book {
     private final String category;
     private StateBook state;
 
+    //Constructor
     public Book(String isbn, String title, String author, String category) {
         this.isbn = isbn;
         this.title = title;
