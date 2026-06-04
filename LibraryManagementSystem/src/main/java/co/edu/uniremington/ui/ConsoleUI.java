@@ -21,12 +21,12 @@ public class ConsoleUI {
 
         while (option != 4) {
 
-            System.out.println("\n===== LIBRARY MANAGEMENT SYSTEM =====");
-            System.out.println("1. Books");
-            System.out.println("2. Loans");
-            System.out.println("3. Summary");
-            System.out.println("4. Exit");
-            System.out.print("Choose an option: ");
+            System.out.println("\n===== SISTEMA DE GESTIÓN DE LIBROS =====");
+            System.out.println("1. Libros");
+            System.out.println("2. Préstamos");
+            System.out.println("3. Resumen");
+            System.out.println("4. Salir");
+            System.out.print("Elija una opción: ");
 
             option = Integer.parseInt(scanner.nextLine());
 
@@ -34,8 +34,8 @@ public class ConsoleUI {
                 case 1 -> booksMenu();
                 case 2 -> loansMenu();
                 case 3 -> showSummary();
-                case 4 -> System.out.println("Goodbye!");
-                default -> System.out.println("Invalid option.");
+                case 4 -> System.out.println("AIOSHHHHH!");
+                default -> System.out.println("Opción inválida.");
             }
         }
     }
@@ -45,14 +45,14 @@ public class ConsoleUI {
 
         while (option != 6) {
 
-            System.out.println("\n--- BOOKS ---");
-            System.out.println("1. Register book");
-            System.out.println("2. Search by ISBN");
-            System.out.println("3. Search by title");
-            System.out.println("4. View all");
-            System.out.println("5. View available");
-            System.out.println("6. Back");
-            System.out.print("Choose an option: ");
+            System.out.println("\n--- LIBROS ---");
+            System.out.println("1. Registrar libro");
+            System.out.println("2. Buscar por ISBN");
+            System.out.println("3. Buscar por título");
+            System.out.println("4. Ver todos");
+            System.out.println("5. Ver Disponibles");
+            System.out.println("6. Atrás");
+            System.out.print("Elija una opción: ");
 
             option = Integer.parseInt(scanner.nextLine());
 
@@ -62,14 +62,14 @@ public class ConsoleUI {
                 case 3 -> searchByTitle();
                 case 4 -> displayBooks(
                         library.getCatalog(),
-                        "No books registered."
+                        "No hay libros registrados."
                 );
                 case 5 -> displayBooks(
                         library.getAvailableBooks(),
-                        "No available books."
+                        "No hay libros disponibles."
                 );
-                case 6 -> System.out.println("Returning...");
-                default -> System.out.println("Invalid option.");
+                case 6 -> System.out.println("Devolviendo...");
+                default -> System.out.println("Opción no válida.");
             }
         }
     }
@@ -78,13 +78,13 @@ public class ConsoleUI {
         System.out.print("ISBN: ");
         String isbn = scanner.nextLine();
 
-        System.out.print("Title: ");
+        System.out.print("Título: ");
         String title = scanner.nextLine();
 
-        System.out.print("Author: ");
+        System.out.print("Autor: ");
         String author = scanner.nextLine();
 
-        System.out.print("Category: ");
+        System.out.print("Categoría: ");
         String category = scanner.nextLine();
 
         Book book = new Book(isbn, title, author, category);
@@ -93,13 +93,13 @@ public class ConsoleUI {
 
         System.out.println(
                 added
-                        ? "Book registered successfully."
-                        : "A book with that ISBN already exists."
+                        ? "Libro registrado correctamente."
+                        : "Ya existe un libro con ese ISBN"
         );
     }
     private void searchByIsbn() {
 
-        System.out.print("Enter ISBN: ");
+        System.out.print("Ingrese el ISBN: ");
         String isbn = scanner.nextLine();
 
         displayBook(
@@ -108,12 +108,12 @@ public class ConsoleUI {
     }
     private void searchByTitle() {
 
-        System.out.print("Enter title: ");
+        System.out.print("Ingrese el título: ");
         String title = scanner.nextLine();
 
         displayBooks(
                 library.searchByTitle(title),
-                "No books found."
+                "No se encontraron libros."
         );
     }
     private void loansMenu() {
@@ -122,13 +122,13 @@ public class ConsoleUI {
 
         while (option != 5) {
 
-            System.out.println("\n--- LOANS ---");
-            System.out.println("1. Register loan");
-            System.out.println("2. Register return");
-            System.out.println("3. View active loans");
-            System.out.println("4. View all loans");
-            System.out.println("5. Back");
-            System.out.print("Choose an option: ");
+            System.out.println("\n--- PRÉSTAMOS ---");
+            System.out.println("1. Registrar préstamo");
+            System.out.println("2. Registrar devolución");
+            System.out.println("3. Ver préstamos activos");
+            System.out.println("4. Ver todos los préstamos");
+            System.out.println("5. Atrás");
+            System.out.print("Elija una opción: ");
 
             option = Integer.parseInt(scanner.nextLine());
 
@@ -137,59 +137,59 @@ public class ConsoleUI {
                 case 2 -> registerReturn();
                 case 3 -> displayLoans(
                         library.getActiveLoans(),
-                        "No active loans."
+                        "No hay préstamos activos."
                 );
                 case 4 -> displayLoans(
                         library.getAllLoans(),
-                        "No loans registered."
+                        "No hay préstamos registrados."
                 );
-                case 5 -> System.out.println("Returning...");
-                default -> System.out.println("Invalid option.");
+                case 5 -> System.out.println("Devolviendo...");
+                default -> System.out.println("Option inválida.");
             }
         }
     }
     private void registerLoan() {
 
-        System.out.print("Enter ISBN: ");
+        System.out.print("Ingresar el ISBN: ");
         String isbn = scanner.nextLine();
 
-        System.out.print("Borrower name: ");
+        System.out.print("Nombre de quien hace el préstamo: ");
         String borrower = scanner.nextLine();
 
         Loan loan = library.loanBooks(isbn, borrower);
 
         if (loan != null) {
-            System.out.println("Loan registered successfully.");
+            System.out.println("Préstamo registrado correctamente.");
             System.out.println(loan);
         } else {
-            System.out.println("Book not found or unavailable.");
+            System.out.println("Libro no encontrado o no disponible.");
         }
     }
     private void registerReturn() {
 
-        System.out.print("Enter loan ID: ");
+        System.out.print("Ingresar el ID del préstamo: ");
         String loanId = scanner.nextLine();
 
         boolean returned = library.returnBook(loanId);
 
         System.out.println(
                 returned
-                        ? "Book returned successfully."
-                        : "Loan not found or already returned."
+                        ? "Libro devuelto correctamente."
+                        : "Préstamo no encontrado o ya devuelto."
         );
     }
     private void showSummary() {
 
-        System.out.println("\n===== SUMMARY =====");
-        System.out.println("Total books: " + library.getCatalog().size());
-        System.out.println("Available books: " + library.getAvailableBooks().size());
-        System.out.println("Active loans: " + library.getActiveLoans().size());
-        System.out.println("Total loans: " + library.getAllLoans().size());
+        System.out.println("\n===== RESUMEN =====");
+        System.out.println("Total de libros: " + library.getCatalog().size());
+        System.out.println("Libros disponibles: " + library.getAvailableBooks().size());
+        System.out.println("Préstamos activos: " + library.getActiveLoans().size());
+        System.out.println("Total de préstamos: " + library.getAllLoans().size());
     }
     private void displayBook(Book book) {
 
         if (book == null) {
-            System.out.println("Book not found.");
+            System.out.println("Libro no encontrado.");
             return;
         }
 
